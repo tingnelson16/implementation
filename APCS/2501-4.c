@@ -21,7 +21,7 @@ int main() {
         scanf("%d", &a[i]);
     }
 
-    sorted(a, n);  // 先將陣列進行泡沫排序
+    sorted(a, n);  // 先把陣列進行泡沫排序
 
     int distance1 = 9999, distance2 = 9999;
 

@@ -14,11 +14,7 @@ int main() {
     min[0] = 0; // 假設輸出最小字典序的第一個數字是 0
     max[0] = 0; // 假設輸出最大字典序的第一個數字是 0
 
-    for (i = 1; i < n; i++) {
-        min[i] = min[i-1] + a[i-1];
-    }
-
-    for (i = size; i >)
+    
 
     for (i = 0; i < n; i++) {
         printf("%d ", min[i]);

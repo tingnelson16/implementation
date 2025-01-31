@@ -1,6 +1,6 @@
 #include <stdio.h>          // https://zerojudge.tw/ShowProblem?problemid=q184
 
-void sorted(int *a, int n) {
+void sort(int *a, int n) {
     for (int i = 0; i < n - 1; i++) {
         for (int j = 0; j < n - i - 1; j++) {
             if (a[j] > a[j + 1]) {
@@ -35,7 +35,7 @@ int main() {
         scanf("%d", &a[i]);
     }
 
-    sorted(a, n);  // 先把陣列進行泡沫排序
+    sort(a, n);  // 先把陣列進行泡沫排序
 
     int start1, start2;
     int distance1 = find_min_range(a, n, k, &start1);
@@ -43,7 +43,7 @@ int main() {
     
 
      for (int i = 0; i <= n - k; i++) {
-        
+
         // 跳過與第一組重疊的範圍
         if (i >= start1 && i < start1 + k) continue;
         int range = a[i + k - 1] - a[i];

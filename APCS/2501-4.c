@@ -12,6 +12,20 @@ void sorted(int *a, int n) {
     }
 }
 
+int find_min_range(int *a, int n, int k, int *start) {
+    int min_range = a[n-1] - a[0]; // 初始化為整個陣列最大範圍
+    for (int i = 0; i <= n - k; i++) {
+        int range = a[i + k - 1] - a[i];
+
+        // 找到更小範圍則更新
+        if (range < min_range) {
+            min_range = range;
+            *start = i; // 標記範圍起始數字
+        }
+    }
+    return min_range;
+}
+
 int main() {
     int n, k;
     scanf("%d %d", &n, &k);
@@ -23,34 +37,26 @@ int main() {
 
     sorted(a, n);  // 先把陣列進行泡沫排序
 
-    int distance1 = 9999, distance2 = 9999;
+    int start1, start2;
+    int distance1 = find_min_range(a, n, k, &start1);
+    int distance2 = a[n-1] - a[0]; // 初始化為整個陣列最大範圍
+    
 
-    // 找到第一組最小距離
-    for (int i = 0; i < n - (k - 1); i++) {
-        if (a[i + k - 1] - a[i] < distance1) {
-            distance1 = a[i + k - 1] - a[i];
-        }
-    }
+     for (int i = 0; i <= n - k; i++) {
+        
+        // 跳過與第一組重疊的範圍
+        if (i >= start1 && i < start1 + k) continue;
+        int range = a[i + k - 1] - a[i];
 
-    // 把第一組裡面的數字搞爛
-    for (int i = 0; i < n - (k - 1); i++) {
-        if (a[i + k - 1] - a[i] == distance1) {
-            for (int j = i; j < i + k; j++) {
-                a[j] = -999;
-            }
-        }
-    }
-
-    // 找到第二組最小距離
-    for (int i = 0; i < n - (k - 1); i++) {
-        if (a[i + k - 1] - a[i] < distance2 && a[i] != -999 && a[i + k - 1] != -999) {
-            distance2 = a[i + k - 1] - a[i];
+        // 找到更小範圍則更新
+        if (range < distance2) {
+            distance2 = range;
+            start2 = i;
         }
     }
 
     // 計算總距離
-    int total_distance = distance1 + distance2;
-    printf("%d\n", total_distance);
+    printf("%d\n", distance1 + distance2);
 
     return 0;
 }

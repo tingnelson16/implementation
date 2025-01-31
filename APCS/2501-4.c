@@ -1,5 +1,3 @@
-#include <stdio.h>          // https://zerojudge.tw/ShowProblem?problemid=q184
-
 /*
     演算法思路：
 
@@ -15,6 +13,8 @@
     2. 輸入[0, 2, 2, 3, 6, 8, 9], k = 3 
     範圍最小的是 (2, 2, 3) 和 (6, 8, 9)，所以總距離是 (3 - 2) + (9 - 6) = 4
 */
+
+#include <stdio.h>          // https://zerojudge.tw/ShowProblem?problemid=q184
 
 void sort(int *a, int n) {
     for (int i = 0; i < n - 1; i++) {
